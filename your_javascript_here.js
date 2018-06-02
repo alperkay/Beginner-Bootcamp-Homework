@@ -16,17 +16,15 @@ hero.name= "batman";
 hero.heroic= true;
 hero.inventory= [{type:"gun",damage:8}];
 hero.health= 10;
-hero.weapon= {type: 'knife', damage: 5};
+hero.weapon= {type: 'knife', damage: 2};
 
-function Creature(name,heroic,inventory,health,weapon) {
-  this.name= name;
-  this.heroic= heroic;
-  this.inventory= inventory;
-  this.health= health;
-  this.weapon= weapon;
-};
+let creature = new Object();
 
-let creature = new Creature("joker", false, ['knife','sword','machine gun'], 5, {type: "gun", damage:5});
+creature.name= "joker";
+creature.heroic= false;
+creature.inventory= [{type:"knife",damage:4}];
+creature.health= 5;
+creature.weapon= {type:"barehand",damage: 1};
 
 // Game logic
 /*
@@ -56,7 +54,7 @@ function pickUpItem(creature, item) {
     3. return the `defender` object from this function.
 */
 function dealDamage(attacker,defender) {
-  defender.health=defender.health-1;
+  defender.health=defender.health-attacker.weapon.damage;
   return defender;
 }
 /*
@@ -66,14 +64,11 @@ function dealDamage(attacker,defender) {
     3. modify the creature's `inventory` by removing the `index`th element from it
     4. return the `creature` object from the function
 */
+
 function equipWeapon(creature,index) {
-  if (index>creature.inventory.length-1) {
-    window.alert("not so many items") } else {
-    let backToInv=creature.weapon; //bonus feature: the weapon at hand is returned to the inventory when this function is called
     creature.weapon=creature.inventory[index];
-    creature.inventory.splice(index,1,backToInv);
+    creature.inventory.splice(index,1);
     return creature;
-  }
 }
 /*
 `doBattle` is a function that takes two creatures, the first of which is a hero, which deal damage to each other until one of them dies.
@@ -83,5 +78,17 @@ function equipWeapon(creature,index) {
     4. at the end of `doBattle` check if `heroicCreature` has health above zero; if so return it from the function. Otherwise give the user feedback about the death of their hero with a popup.
 */
 
+function doBattle(heroicCreature, creature) {
+  if (heroicCreature.heroic!=true) {
+    return null; } else {
+      while (heroicCreature.health>0 && creature.health>0) {
+        dealDamage(heroicCreature,creature);
+        if (creature.health>0) {dealDamage(creature,heroicCreature);}
+      };
+      if (heroicCreature.health>0) {
+        return heroicCreature.health; } else {
+          window.alert("your hero has died!")};
+        };
+}
 
 // UI

@@ -1,0 +1,22 @@
+img {
+
+    width:  200px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+#container {
+	text-align: justify;
+	}
+
+#container:after {
+	content: "";
+	width: 100%;
+	display: inline-block;
+    }
+
+th {
+    text-align: left;
+}

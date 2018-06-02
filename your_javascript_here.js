@@ -18,13 +18,13 @@ hero.inventory= [{type:"gun",damage:8}];
 hero.health= 10;
 hero.weapon= {type: 'knife', damage: 2};
 
-let creature = new Object();
+let enemy = new Object();
 
-creature.name= "joker";
-creature.heroic= false;
-creature.inventory= [{type:"knife",damage:4}];
-creature.health= 5;
-creature.weapon= {type:"barehand",damage: 1};
+enemy.name= "joker";
+enemy.heroic= false;
+enemy.inventory= [{type:"knife",damage:4}];
+enemy.health= 5;
+enemy.weapon= {type:"barehand",damage: 1};
 
 // Game logic
 /*
@@ -33,7 +33,7 @@ creature.weapon= {type:"barehand",damage: 1};
     2. modify the `health` of the `creature` object by assigning it `10`
     3. return the `creature`object from the function
 */
-function rest(creature) {
+let rest = function(creature) {
   creature.health=10;
   return creature;
 }
@@ -47,6 +47,7 @@ function pickUpItem(creature, item) {
   creature.inventory.push(item);
   return creature;
 }
+
 /*
 `dealDamage` is a function that subtracts one creatures weapon damage from another creatures health
     1. `dealDamage` should have two parameters: `attacker` and `defender`. You can assume that both have the same structure as your `hero` object.
@@ -69,6 +70,7 @@ function equipWeapon(creature,index) {
     creature.weapon=creature.inventory[index];
     creature.inventory.splice(index,1);
     return creature;
+    displayStats();
 }
 /*
 `doBattle` is a function that takes two creatures, the first of which is a hero, which deal damage to each other until one of them dies.
@@ -89,6 +91,18 @@ function doBattle(heroicCreature, creature) {
         return heroicCreature.health; } else {
           window.alert("your hero has died!")};
         };
+
 }
 
 // UI
+/*
+Write `displayStats` function that writes your hero's name, health, weapontype, weapon damage to the page. Call it at the end of your script
+*/
+
+function displayStats() {
+  let newP = document.createElement('p');
+  let nameText = document.createTextNode('hero name: '+hero.name+' hero health: '+hero.health+' weapon type: '+hero.weapon.type+' weapon damage: '+hero.weapon.damage);
+  let statName = newP.appendChild(nameText);
+  let statDiv = document.getElementById('stats');
+  statDiv.appendChild(statName);
+}

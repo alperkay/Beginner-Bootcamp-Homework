@@ -5,9 +5,37 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>BB homework</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <h1>Good luck! You can do it!</h1>
+        <div id="container">
+          <img src="images/bed.jpg" alt="bed" onclick="rest(hero),displayStats()">
+          <img src="images/weapon.jpg" alt="weapon" onclick="pickUpItem(hero, {type: 'machine gun', damage: 10}),displayStats()">
+          <img src="images/enemy.jpg" alt="enemy" onclick="doBattle(hero,enemy),displayStats()">
+          <img src="images/backpack.jpg" alt="backpack" onclick="equipWeapon(hero,window.prompt('which weapon would you like to equip, Bruce?')),displayStats()">
+        </div>
+        <div id="stats">
+
+        </div>
+        <table>
+        <tr>
+          <th>Name</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Health</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Weapon Type</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Weapon Damage</th>
+          <td></td>
+        </tr>
+      </table>
         <script src="your_javascript_here.js"></script>
         <script src="tests.js"></script>
     </body>

@@ -8,35 +8,45 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <h1>Good luck! You can do it!</h1>
+        <h1>DARK KNIGHT RETURNS</h1>
         <div id="container">
-          <img src="images/bed.jpg" alt="bed" onclick="rest(hero),displayStats()">
-          <img src="images/weapon.jpg" alt="weapon" onclick="pickUpItem(hero, {type: 'machine gun', damage: 10}),displayStats()">
-          <img src="images/enemy.jpg" alt="enemy" onclick="doBattle(hero,enemy),displayStats()">
-          <img src="images/backpack.jpg" alt="backpack" onclick="equipWeapon(hero,window.prompt('which weapon would you like to equip, Bruce?')),displayStats()">
+          <img src="images/bed.jpg" alt="bed" onclick="rest(hero),updateStats()">
+          <img src="images/weapon.jpg" alt="weapon" onclick="pickUpItem(hero, {type: 'machine gun', damage: 10}),updateStats()">
+          <img src="images/enemy.jpg" alt="enemy" onclick="doBattle(hero,enemy),updateStats()">
+          <img src="images/backpack.jpg" alt="backpack" onclick="equipWeapon(hero,window.prompt('which weapon would you like to equip, Bruce?')),updateStats()">
         </div>
-        <div id="stats">
-
-        </div>
-        <table>
+        <table id="stats">
         <tr>
           <th>Name</th>
-          <td></td>
+          <td>.....</td>
         </tr>
         <tr>
           <th>Health</th>
-          <td></td>
+          <td>.....</td>
         </tr>
         <tr>
           <th>Weapon Type</th>
-          <td></td>
+          <td>.....</td>
         </tr>
         <tr>
           <th>Weapon Damage</th>
-          <td></td>
+          <td>.....</td>
         </tr>
       </table>
-        <script src="your_javascript_here.js"></script>
-        <script src="tests.js"></script>
+      <table id="inventory">
+        <tr>
+          <th>Inventory Type</th>
+        </tr>
+        <tr>
+          <td>.....</td>
+        </tr>
+      </table>
+      <form id="heroForm">
+        <strong>New Hero Name:</strong><br>
+        <input type="text" name="heroName">
+        <input type="submit" onclick="submitHero()">
+      </form>
+      <script src="your_javascript_here.js"></script>
+      <script src="tests.js"></script>
     </body>
 </html>

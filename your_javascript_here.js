@@ -44,7 +44,7 @@ let rest = function(creature) {
     3. return the `creature` object from the function
 */
 function pickUpItem(creature, item) {
-  creature.inventory.push(item);
+  creature.inventory.push({type: item,});
   return creature;
 }
 
@@ -100,9 +100,38 @@ Write `displayStats` function that writes your hero's name, health, weapontype, 
 */
 
 function displayStats() {
-  let newP = document.createElement('p');
-  let nameText = document.createTextNode('hero name: '+hero.name+' hero health: '+hero.health+' weapon type: '+hero.weapon.type+' weapon damage: '+hero.weapon.damage);
-  let statName = newP.appendChild(nameText);
-  let statDiv = document.getElementById('stats');
-  statDiv.appendChild(statName);
+  document.getElementsByTagName("td")[0].innerHTML = hero.name;
+  document.getElementsByTagName("td")[1].innerHTML = hero.health;
+  document.getElementsByTagName("td")[2].innerHTML = hero.weapon.type;
+  document.getElementsByTagName("td")[3].innerHTML = hero.weapon.damage;
+}
+
+/*
+Write a `displayInventory` function that iterates over your hero's inventory and writes it to the page. Add a couple of weapons to you hero's inventory to see if it works. Call it at the end of your script
+*/
+
+function displayInventory() {
+  let arrInv = hero.inventory;
+  let arrType;
+  for (i=0; i<=arrInv.length; i++) {
+    arrType = arrInv[i].type;
+  }
+  strType = arrType.toString();
+  document.getElementsByTagName("td")[4].innerHTML = strType;
+}
+
+/*
+Write an `updateStats` function that calls `displayStats` and `displayInventory`. Call `updateStats` when a picture is clicked in addition to the function that is already being called.
+*/
+
+function updateStats() {
+  displayStats();
+  displayInventory();
+}
+
+/*
+Create a form that allow users to change the name of their hero.
+*/
+function submitHero() {
+    document.getElementById("heroForm").submit();
 }

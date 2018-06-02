@@ -19,4 +19,32 @@ img {
 
 th {
     text-align: left;
+    border-collapse: collapse;
+}
+
+#stats tr:hover {background-color: #ddd;}
+#stats th, #stats td {border: 1px solid #ddd;}
+
+#inventory tr:hover {background-color: #ddd;}
+#inventory th, #inventory td {border: 1px solid #ddd;}
+
+#inventory {
+    position: relative;
+    top: 30px;
+}
+
+form {
+    position: relative;
+    top: 50px;
+}
+
+body {
+   background-image: url("images/batmanlogo.jpg");
+   background-position: 50% 80%;
+   background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    text-align: center;
 }

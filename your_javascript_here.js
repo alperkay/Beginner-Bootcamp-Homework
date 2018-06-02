@@ -14,9 +14,19 @@ let hero = new Object();
 
 hero.name= "batman";
 hero.heroic= true;
-hero.inventory= ['shitload of shit'];
+hero.inventory= [{type:"gun",damage:8}];
 hero.health= 10;
-hero.weapon= {type: "nunchaku", damage:5}
+hero.weapon= {type: 'knife', damage: 5};
+
+function Creature(name,heroic,inventory,health,weapon) {
+  this.name= name;
+  this.heroic= heroic;
+  this.inventory= inventory;
+  this.health= health;
+  this.weapon= weapon;
+};
+
+let creature = new Creature("joker", false, ['knife','sword','machine gun'], 5, {type: "gun", damage:5});
 
 // Game logic
 /*
@@ -29,4 +39,49 @@ function rest(creature) {
   creature.health=10;
   return creature;
 }
+/*
+`pickUpItem` is a function that adds an item to the inventory of a creature
+    1. `pickUpItem` should have two parameters: `creature` and `item`. You can assume that creature has the same structure as your `hero` object and that `item` has the same structure as a `weapon` object.
+    2. modify the `inventory` of the `creature` by adding the item to it.
+    3. return the `creature` object from the function
+*/
+function pickUpItem(creature, item) {
+  creature.inventory.push(item);
+  return creature;
+}
+/*
+`dealDamage` is a function that subtracts one creatures weapon damage from another creatures health
+    1. `dealDamage` should have two parameters: `attacker` and `defender`. You can assume that both have the same structure as your `hero` object.
+    2. modify the `health` value of the `defender` object by subtracting the value of the attacker's weapon damage.
+    3. return the `defender` object from this function.
+*/
+function dealDamage(attacker,defender) {
+  defender.health=defender.health-1;
+  return defender;
+}
+/*
+`equipWeapon` is a function that takes a changes the weapon of the creature to one that is in their inventory and removes that weapon from their inventory.
+    1. `equipWeapon` should have two parameters. `creature` and `index`. You can assume that creature has the same structure as your `hero` object and that `index` is a number.
+    2. modify the `weapon` of the `creature` by assigning it the value of the `index`th element of the `inventory`
+    3. modify the creature's `inventory` by removing the `index`th element from it
+    4. return the `creature` object from the function
+*/
+function equipWeapon(creature,index) {
+  if (index>creature.inventory.length-1) {
+    window.alert("not so many items") } else {
+    let backToInv=creature.weapon; //bonus feature: the weapon at hand is returned to the inventory when this function is called
+    creature.weapon=creature.inventory[index];
+    creature.inventory.splice(index,1,backToInv);
+    return creature;
+  }
+}
+/*
+`doBattle` is a function that takes two creatures, the first of which is a hero, which deal damage to each other until one of them dies.
+    1. `doBattle` should have two parameters `heroicCreature` and `creature`. You can assume that both have the same structure as your `hero` object.
+    2. make a guard clause which checks if `heroicCreature` is `heroic`. If `heroicCreature` is not `heroic` return `null` from this function.
+    3. while `heroicCreature` and `creature` have health above zero they take turns dealingDamage to eachother: `heroicCreature` deals damage to `creature` first. If `creature` survives it deals damage to `heroicCreature`.
+    4. at the end of `doBattle` check if `heroicCreature` has health above zero; if so return it from the function. Otherwise give the user feedback about the death of their hero with a popup.
+*/
+
+
 // UI

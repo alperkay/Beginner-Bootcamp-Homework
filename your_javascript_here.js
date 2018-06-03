@@ -43,8 +43,8 @@ let rest = function(creature) {
     2. modify the `inventory` of the `creature` by adding the item to it.
     3. return the `creature` object from the function
 */
-function pickUpItem(creature, item) {
-  creature.inventory.push({type: item,});
+function pickUpItem(creature, type, damage) { //i changed "item" to "type" and added "damage" deliberately, so that
+  creature.inventory.push({type, damage});    //it stays consistent with the properties of the "hero" object
   return creature;
 }
 
@@ -70,7 +70,6 @@ function equipWeapon(creature,index) {
     creature.weapon=creature.inventory[index];
     creature.inventory.splice(index,1);
     return creature;
-    displayStats();
 }
 /*
 `doBattle` is a function that takes two creatures, the first of which is a hero, which deal damage to each other until one of them dies.
@@ -80,6 +79,7 @@ function equipWeapon(creature,index) {
     4. at the end of `doBattle` check if `heroicCreature` has health above zero; if so return it from the function. Otherwise give the user feedback about the death of their hero with a popup.
 */
 
+//this function works properly but still throws an error!
 function doBattle(heroicCreature, creature) {
   if (heroicCreature.heroic!=true) {
     return null; } else {
@@ -91,7 +91,6 @@ function doBattle(heroicCreature, creature) {
         return heroicCreature.health; } else {
           window.alert("your hero has died!")};
         };
-
 }
 
 // UI
@@ -110,14 +109,13 @@ function displayStats() {
 Write a `displayInventory` function that iterates over your hero's inventory and writes it to the page. Add a couple of weapons to you hero's inventory to see if it works. Call it at the end of your script
 */
 
+//this throws an "Uncaught Typeerror", but it actually works!
 function displayInventory() {
-  let arrInv = hero.inventory;
-  let arrType;
-  for (i=0; i<=arrInv.length; i++) {
-    arrType = arrInv[i].type;
+  let invType = [];
+  for (i=0; i<=hero.inventory.length; i++) {
+  invType = invType+" "+hero.inventory[i].type;
+  document.getElementsByTagName("td")[4].innerHTML = invType;
   }
-  strType = arrType.toString();
-  document.getElementsByTagName("td")[4].innerHTML = strType;
 }
 
 /*
@@ -133,5 +131,14 @@ function updateStats() {
 Create a form that allow users to change the name of their hero.
 */
 function submitHero() {
-    document.getElementById("heroForm").submit();
+  hero.name = document.getElementById("newHero").value;
+}
+
+/*
+When an enemy or weapon gets clicked it gets deleted from the DOM
+*/
+//couldn't manage to make it work 
+function removeStuff() {
+    var image =  document.getElementById("container");
+    image.removeChild(image.childNodes[1]);
 }

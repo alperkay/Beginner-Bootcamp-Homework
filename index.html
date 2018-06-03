@@ -11,8 +11,8 @@
         <h1>DARK KNIGHT RETURNS</h1>
         <div id="container">
           <img src="images/bed.jpg" alt="bed" onclick="rest(hero),updateStats()">
-          <img src="images/weapon.jpg" alt="weapon" onclick="pickUpItem(hero, {type: 'machine gun', damage: 10}),updateStats()">
-          <img src="images/enemy.jpg" alt="enemy" onclick="doBattle(hero,enemy),updateStats()">
+          <img id="removable" src="images/weapon.jpg" alt="weapon" onclick="pickUpItem(hero, 'machine gun', 10),updateStats() ,removestuff()">
+          <img id="removable" src="images/enemy.jpg" alt="enemy" onclick="doBattle(hero,enemy),updateStats(),removestuff()">
           <img src="images/backpack.jpg" alt="backpack" onclick="equipWeapon(hero,window.prompt('which weapon would you like to equip, Bruce?')),updateStats()">
         </div>
         <table id="stats">
@@ -35,7 +35,7 @@
       </table>
       <table id="inventory">
         <tr>
-          <th>Inventory Type</th>
+          <th>Inventory</th>
         </tr>
         <tr>
           <td>.....</td>
@@ -43,10 +43,11 @@
       </table>
       <form id="heroForm">
         <strong>New Hero Name:</strong><br>
-        <input type="text" name="heroName">
-        <input type="submit" onclick="submitHero()">
+        <input type="text" id="newHero">
+        <button type="button" onclick="submitHero(), updateStats()">Set a new Hero Name</button>
       </form>
       <script src="your_javascript_here.js"></script>
       <script src="tests.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </body>
 </html>
